@@ -80,5 +80,6 @@ class ShopProduct implements Chargeable {
 	}
 	
 	use PriceUtilities;
+	use IdentityTrait;
 	
 }

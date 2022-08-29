@@ -4,16 +4,18 @@
 //Maybe train a bit using the standard __construct method. OK
 echo 'Start Program: ' . memory_get_usage() . '<br>';
 
-//load trait
-include_once 'includes/trait-PriceUtilities.php';
+
 // interface Chargeable ()
 include_once 'includes/interface-Chargeable.php';
+//load traits
+include_once 'includes/traits.php';
 //class parent ShopProduct
 include_once 'includes/class-ShopProduct.php';
-echo 'Memory half scripts loaded: ' . memory_get_usage() . '<br>';
-
 //class Child BookProduct
 include_once 'includes/class-BookProduct.php';
+
+echo 'Memory half <b>included scripts</b> loaded: ' . memory_get_usage() . '<br>';
+
 //class CdProduct
 include_once 'includes/class-CdProduct.php';
 //abstract ShopProductWriter
@@ -64,10 +66,10 @@ echo '<br>';
 echo $book_product->getDiscount();
 echo '<br>';
 // child of ShopProduct -> BookProduct is using parents trait method calculateTax()
-echo 'Tax Calculation: ' . $book_product->calculateTax(100);
+echo 'Tax Calculation from PriceUtilities trait: ' . $book_product->calculateTax(100);
 echo '<br>';
 // child of ShopProduct -> BookProduct is using parents trait method generateId()
-echo 'Unique ID: ' . $book_product->generateId();
+echo 'Unique ID from Identitytrait trait: ' . $book_product->generateId();
 
 
 $cdproduct = new CdProduct( 'title', 'namefirst', 'lastname', 25, 60 );
@@ -76,6 +78,10 @@ $cdproduct = new CdProduct( 'title', 'namefirst', 'lastname', 25, 60 );
 echo $cdproduct->cdInfo( $shopProduct );
 
 echo '<br> Memory usage end Script: ' . memory_get_usage() . '<br>';
+unset($cdproduct, $book_product, $xml,$textProduct, $shopProduct);
+echo '<br> Memory usage after Unset: ' . memory_get_usage() . '<br>';
+
+
 
 
 
