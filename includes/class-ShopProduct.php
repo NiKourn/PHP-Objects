@@ -14,10 +14,10 @@ class ShopProduct {
 	 * @param int|float $price
 	 */
 	public function __construct(
-		private string $title,
-		private string $producerFirstName,
-		private string $producerMainName,
-		protected int|float $price
+		private string $title = '',
+		private string $producerFirstName = '',
+		private string $producerMainName = '',
+		protected int|float $price = 0
 	) {
 	}
 	
