@@ -1,6 +1,6 @@
 <?php
 
-class ShopProduct {
+class ShopProduct implements Chargeable {
 	
 	/**
 	 * @var int|float
@@ -8,6 +8,7 @@ class ShopProduct {
 	private int|float $discount = 0;
 	
 	/**
+	 * Constructor
 	 * @param string $title
 	 * @param string $producerFirstName
 	 * @param string $producerMainName
@@ -17,11 +18,12 @@ class ShopProduct {
 		private string $title = 'My Shop',
 		private string $producerFirstName = 'Nikolaos',
 		private string $producerMainName = 'Kourniotis',
-		protected int|float $price = 0
+		protected int|float $price = 35
 	) {
 	}
 	
 	/**
+	 * get Producer's first name
 	 * @return string
 	 */
 	public function getProducerFirstName(): string {
@@ -67,11 +69,16 @@ class ShopProduct {
 		return $this->producerFirstName . ' ' . $this->producerMainName;
 	}
 	
+	/**
+	 * @return string
+	 */
 	public function getSummaryLine(): string {
 		$base = "{$this->title} ( {$this->producerMainName}, ";
 		$base .= "{$this->producerFirstName} )";
 		
 		return $base;
 	}
+	
+	use PriceUtilities;
 	
 }

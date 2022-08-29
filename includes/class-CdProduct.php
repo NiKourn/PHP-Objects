@@ -32,6 +32,10 @@ class CdProduct extends ShopProduct {
 		return $base;
 	}
 	
+	public function cdInfo( Chargeable $prod ) {
+		//$length = $prod->getPlayLength();
+		$length = $prod->getPrice();
+		echo $length;
+	}
+	
 }
-
-new CdProduct;
