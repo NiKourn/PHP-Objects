@@ -6,30 +6,38 @@ class BookProduct extends ShopProduct {
 	/**
 	 * @var int
 	 */
-	private int $numpages;
+	private int $numPages;
 	
 	/**
 	 * @param string $title
 	 * @param string $firstName
 	 * @param string $mainName
 	 * @param float|int $price
-	 * @param int $numpages
+	 * @param int $numPages
 	 */
-	public function __construct( string $title, string $firstName, string $mainName, float|int $price, int $numpages ) {
+	public function __construct( string $title = '' , string $firstName = 'Fotis', string $mainName = 'Kourniotis', float|int $price = 1, int $numPages =12 ) {
 		parent::__construct( $title, $firstName, $mainName, $price );
-		$this->numpages = $numpages;
+		$this->numPages = $numPages;
 	}
 	
+	public function getParentDefaults(){
+		parent::getSummaryLine();
+	}
+	
+	/**
+	 * @return int
+	 */
 	public function getNumberOfPages(): int {
-		return $this->numpages;
+		return $this->numPages;
 	}
 	
+	/**
+	 * @return string
+	 */
 	public function getSummaryLine(): string {
 		$base = parent::getSummaryLine();
-		$base .= ": page count - $this->numpages";
+		$base .= ": page count - $this->numPages";
 		
 		return $base;
 	}
 }
-
-new BookProduct;

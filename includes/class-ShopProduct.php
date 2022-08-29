@@ -14,9 +14,9 @@ class ShopProduct {
 	 * @param int|float $price
 	 */
 	public function __construct(
-		private string $title = '',
-		private string $producerFirstName = '',
-		private string $producerMainName = '',
+		private string $title = 'My Shop',
+		private string $producerFirstName = 'Nikolaos',
+		private string $producerMainName = 'Kourniotis',
 		protected int|float $price = 0
 	) {
 	}
@@ -69,11 +69,9 @@ class ShopProduct {
 	
 	public function getSummaryLine(): string {
 		$base = "{$this->title} ( {$this->producerMainName}, ";
-		$base .= "{$this->producerMainName}";
+		$base .= "{$this->producerFirstName} )";
 		
 		return $base;
 	}
 	
 }
-
-new ShopProduct();
