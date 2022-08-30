@@ -1,6 +1,6 @@
 <?php
 
-class ShopProduct implements Chargeable {
+class ShopProduct implements Chargeable, IdentityObject {
 	
 	/**
 	 * @var int|float

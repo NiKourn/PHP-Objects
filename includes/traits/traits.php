@@ -21,3 +21,11 @@ trait IdentityTrait {
 	}
 	
 }
+
+trait TaxTools{
+	
+	public function calculateTax(float $price):int {
+		return 222;
+	}
+	
+}

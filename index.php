@@ -1,29 +1,49 @@
+<html>
+<head>
+	<title>PHP Testing - Object, Patterns & Practice</title>
+	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
 <?php
+
 
 //Using property promotion as of PHP 8.0
 //Maybe train a bit using the standard __construct method. OK
 echo 'Start Program: ' . memory_get_usage() . '<br>';
 
-
-// interface Chargeable ()
-include_once 'includes/interface-Chargeable.php';
+// interfaces
+include_once 'includes/interfaces/interface-Chargeable.php';
+include_once 'includes/interfaces/interface-IdentityObject.php';
 //load traits
-include_once 'includes/traits.php';
+include_once 'includes/traits/traits.php';
+//abstract ShopProductWriter
+include_once 'includes/abstracts/abstract-class-ShopProductWriter.php';
+include_once 'includes/abstracts/abstract-Service.php';
 //class parent ShopProduct
-include_once 'includes/class-ShopProduct.php';
+include_once 'includes/classes/class-ShopProduct.php';
 //class Child BookProduct
-include_once 'includes/class-BookProduct.php';
+include_once 'includes/classes/class-BookProduct.php';
 
 echo 'Memory half <b>included scripts</b> loaded: ' . memory_get_usage() . '<br>';
 
 //class CdProduct
-include_once 'includes/class-CdProduct.php';
-//abstract ShopProductWriter
-include_once 'includes/abstract-class-ShopProductWriter.php';
+include_once 'includes/classes/class-CdProduct.php';
 //class XmlProducerWriter
-include_once 'includes/class-XmlProducerWriter.php';
+include_once 'includes/classes/class-XmlProducerWriter.php';
 //class TextProductWriter
-include_once 'includes/class-TextProductWriter.php';
+include_once 'includes/classes/class-TextProductWriter.php';
+//class UtilityService
+include_once 'includes/classes/class-UtilityService.php';
+
+echo "<body><div style=''><div class='container p-2' style='width:1100px;margin:0 auto;'>";
+
+echo '<h3>Includes Order</h3>';
+echo '1.Interfaces (Can\'t instantiate, implements classes and can combine with traits) <br>';
+echo '2.Traits (Used inside classes, basically methods that `included` in a class use with use)<br>';
+echo '3.Abstracts (Can\'t instantiate, uses extend like parents but abstract methods must be the exact same as type and names as methods in child theme)<br>';
+echo '4.Classes <br><br>';
 
 echo 'Memory usage after scripts loaded: ' . memory_get_usage() . '<br>';
 
@@ -66,7 +86,7 @@ echo '<br>';
 echo $book_product->getDiscount();
 echo '<br>';
 // child of ShopProduct -> BookProduct is using parents trait method calculateTax()
-echo 'Tax Calculation from PriceUtilities trait: ' . $book_product->calculateTax(100);
+echo 'Tax Calculation from PriceUtilities trait: ' . $book_product->calculateTax( 100 );
 echo '<br>';
 // child of ShopProduct -> BookProduct is using parents trait method generateId()
 echo 'Unique ID from Identitytrait trait: ' . $book_product->generateId();
@@ -77,13 +97,25 @@ $cdproduct = new CdProduct( 'title', 'namefirst', 'lastname', 25, 60 );
 
 echo $cdproduct->cdInfo( $shopProduct );
 
+
+//seeing which object you can pass
+function storeIdentityObject( IdentityObject $book_product ) {
+	echo '<pre>' . print_r( $book_product, true ) . '</pre>';
+}
+
+echo storeIdentityObject( $book_product );
+echo "<div style='width:100%;border-bottom:1px solid black;height:3px;'></div>";
+
+$utilityservice = new UtilityService();
+echo 'UtilityService: ' . $utilityservice->calculateTax( 100 );
+
+
 echo '<br> Memory usage end Script: ' . memory_get_usage() . '<br>';
-unset($cdproduct, $book_product, $xml,$textProduct, $shopProduct);
+unset( $cdproduct, $book_product, $xml, $textProduct, $shopProduct );
 echo '<br> Memory usage after Unset: ' . memory_get_usage() . '<br>';
 
-
-
-
-
-
-
+?>
+</div>
+</div>
+</body>
+</html>
