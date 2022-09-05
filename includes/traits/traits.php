@@ -24,6 +24,11 @@ trait IdentityTrait {
 
 trait TaxTools{
 	
+	/**
+	 * @param float $price
+	 *
+	 * @return int
+	 */
 	public function calculateTax(float $price):int {
 		return 222;
 	}

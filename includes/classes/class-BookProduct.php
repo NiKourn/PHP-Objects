@@ -15,8 +15,8 @@ class BookProduct extends ShopProduct {
 	 * @param float|int $price
 	 * @param int $numPages
 	 */
-	public function __construct( string $title = '', string $firstName = 'Fotis', string $mainName = 'Kourniotis', float|int $price = 35, int $numPages = 10 ) {
-		parent::__construct( $title, $firstName, $mainName, $price );
+	public function __construct( int $numPages = 10 ) {
+		parent::__construct();
 		$this->numPages = $numPages;
 	}
 	

@@ -7,7 +7,7 @@
 </head>
 
 <?php
-
+$css_line = "<div style='width:100%;border-bottom:1px solid black;height:3px;margin:15px 0'></div>";
 
 //Using property promotion as of PHP 8.0
 //Maybe train a bit using the standard __construct method. OK
@@ -58,7 +58,10 @@ echo 'Memory after $shopProduct instantiated: ' . memory_get_usage() . '<br>';
 
 
 $textProduct = new TextProductWriter();
+
+//property holding class ShopProduct
 $textProduct->addProducts( $shopProduct );
+echo '<pre>$textProduct->getProducts(): ' . print_r($textProduct->getProducts(), true) . '</pre><br><br>';
 $textProduct->write();
 echo '<pre>' . print_r( $shopProduct, true ) . '</pre>';
 
@@ -90,24 +93,31 @@ echo 'Tax Calculation from PriceUtilities trait: ' . $book_product->calculateTax
 echo '<br>';
 // child of ShopProduct -> BookProduct is using parents trait method generateId()
 echo 'Unique ID from Identitytrait trait: ' . $book_product->generateId();
+echo $css_line;
 
 
 $cdproduct = new CdProduct( 'title', 'namefirst', 'lastname', 25, 60 );
-
-
 echo $cdproduct->cdInfo( $shopProduct );
 
 
 //seeing which object you can pass
-function storeIdentityObject( IdentityObject $book_product ) {
+function storeIdentityObject( $book_product ) {
 	echo '<pre>' . print_r( $book_product, true ) . '</pre>';
 }
 
 echo storeIdentityObject( $book_product );
-echo "<div style='width:100%;border-bottom:1px solid black;height:3px;'></div>";
+echo $book_product->getParentDefaults();
+echo $css_line;
+
 
 $utilityservice = new UtilityService();
-echo 'UtilityService: ' . $utilityservice->calculateTax( 100 );
+echo '<h5>Page 98, UtilityService: </h5>' . $utilityservice->calculateTax( 100 );
+echo $css_line;
+print $utilityservice->calculateTax(100) . '<br>';
+print $utilityservice->basicTax(100);
+
+
+
 
 
 echo '<br> Memory usage end Script: ' . memory_get_usage() . '<br>';

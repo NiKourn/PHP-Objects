@@ -80,6 +80,7 @@ class ShopProduct implements Chargeable, IdentityObject {
 	}
 	
 	use PriceUtilities;
+	//uses interface IdentityObject for IdentityTrait method generateId
 	use IdentityTrait;
 	
 }
