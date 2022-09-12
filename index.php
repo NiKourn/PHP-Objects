@@ -14,7 +14,7 @@ $css_line = "<div style='width:100%;border-bottom:1px solid black;height:3px;mar
 //Maybe train a bit using the standard __construct method. OK
 echo 'Start Program: ' . memory_get_usage() . '<br>';
 
-//class to load classes
+//Loads all traits, interfaces, abstracts, classes, functions
 include_once 'includes/loader-class.php';
 
 echo '<pre>' . print_r(get_included_files(), true) . '</pre>';
@@ -105,8 +105,7 @@ print 'call from a static method in Traits: ' . UtilityService::basicTax( 100 );
 
 echo line_color_change( 'green' );
 
-
-echo '<pre>' . print_r(scandir('includes/classes'), true) . '</pre>';
+echo '<pre>' . print_r(glob('includes/*', GLOB_ONLYDIR ), true) . '</pre>';
 
 
 echo '<br> Memory usage end Script: ' . memory_get_usage() . '<br>';

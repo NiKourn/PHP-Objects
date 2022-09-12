@@ -1,30 +1,29 @@
 <?php
 
-class loaderClass {
-
-	/**
-	 * @var string[]
-	 */
-	protected $dir_array = [
-		'includes/traits/',
-		'includes/interfaces/',
-		'includes/abstracts/',
-		'includes/classes/',
-		'includes/functions/',
-	];
+class ObjectLoaderClass {
+	
 	
 	public function __construct() {
-	$this->implement_includes();
+		$this->implement_includes();
 	}
 	
 	/**
+	 * Gets the directory names
+	 * @return array|false
+	 */
+	private function get_directories(): array|false {
+		return glob( 'includes/*', GLOB_ONLYDIR );
+	}
+	
+	/**
+	 * Get the filenames
 	 * @return array
 	 */
-	private function get_filenames() {
-		$array = $this->dir_array;
-		
+	private function get_filenames(): array {
+		$dir_array = $this->get_directories();
 		$new_array = [];
-		foreach ( $array as $full_path ) {
+		
+		foreach ( $dir_array as $full_path ) {
 			$remove_first_two_elements = array_diff( scandir( $full_path ), [ '.', '..' ] );
 			
 			foreach ( $remove_first_two_elements as $filenames ) {
@@ -37,39 +36,51 @@ class loaderClass {
 		return $new_array;
 	}
 	
-	public function implement_includes() {
-		
-		$get_filenames = $this->get_filenames();
-		
-		foreach ( $get_filenames as $filenames ) {
-			
-			if ( str_contains( $filenames, 'trait' ) ) {
-				include_once 'includes/traits/' . $filenames;
-				
-			}
-			if ( str_contains( $filenames, 'interface' ) ) {
-				include_once 'includes/interfaces/' . $filenames;
-				
-			}
-			if ( str_contains( $filenames, 'abstract' ) ) {
-				include_once 'includes/abstracts/' . $filenames;
-			}
-			if ( str_contains( $filenames, 'class' ) ) {
-				include_once 'includes/classes/' . $filenames;
-				
-			}
-			if ( str_contains( $filenames, 'function' ) ) {
-				include_once 'includes/functions/' . $filenames;
-				
-			}
-			
-			
-		}
-		
+	private function folder_conditions(){
 		
 	}
 	
+	/**
+	 * Include everything in include/ directory
+	 * @return void
+	 */
+	private function implement_includes(): void {
+		$get_filenames   = $this->get_filenames();
+		$get_directories = $this->get_directories();
+		
+		foreach ( $get_filenames as $filenames ) {
+			foreach ( $get_directories as $path ) {
+				
+				if ( str_contains( $filenames, 'trait' ) && str_contains( $path, 'trait' ) ) {
+					include_once $path . '/' . $filenames;
+					
+				}
+				
+				if ( str_contains( $filenames, 'interface' ) && str_contains( $path, 'interface' ) ) {
+					include_once $path . '/' . $filenames;
+					
+				}
+				
+				if ( str_contains( $filenames, 'abstract' ) && str_contains( $path, 'abstract' ) ) {
+					include_once $path . '/' . $filenames;
+					
+				}
+				
+				if ( str_contains( $filenames, 'class' ) && str_contains( $path, 'class' ) ) {
+					include_once $path . '/' . $filenames;
+					
+				}
+				
+				if ( str_contains( $filenames, 'function' ) && str_contains( $path, 'function' ) ) {
+					include_once $path . '/' . $filenames;
+					
+				}
+				
+			}
+		}
+		
+	}
 	
 }
 
-$loaderClass = new loaderClass();
+$loaderClass = new ObjectLoaderClass();

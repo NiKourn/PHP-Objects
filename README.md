@@ -3,6 +3,9 @@
 Works only with php 8.0 or newer!
 work path -> http://book.local
 
+## 12.09.22
+- Load classes at include folders automatically
+
 
 ## 05.09.22
 
