@@ -2,10 +2,13 @@
 
 trait PriceUtilities {
 	
-	private int $taxrate = 20;
+	//declared static later p.101
+	private static int $taxrate = 20;
 	
-	public function calculateTax( float $price ): float {
-		return ( ( $this->taxrate / 100 ) * $price );
+	//declared static later p.101
+	
+	public static function calculateTax( float $price ): float {
+		return ( ( self::$taxrate / 100 ) * $price );
 	}
 	//other Utilities
 	
