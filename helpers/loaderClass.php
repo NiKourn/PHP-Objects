@@ -1,7 +1,12 @@
 <?php
 
-class ObjectLoaderClass {
+class loaderClass {
 	
+	/**
+	 * folders have to have the same name with the files inside.
+	 * @var string
+	 */
+	private string $folder_path = 'helpers/*';
 	
 	public function __construct() {
 		$this->implement_includes();
@@ -12,7 +17,7 @@ class ObjectLoaderClass {
 	 * @return array|false
 	 */
 	private function get_directories(): array|false {
-		return glob( 'includes/*', GLOB_ONLYDIR );
+		return glob( $this->folder_path, GLOB_ONLYDIR );
 	}
 	
 	/**
@@ -36,8 +41,10 @@ class ObjectLoaderClass {
 		return $new_array;
 	}
 	
-	private function folder_conditions(){
-		
+	private function folder_conditions( $needle, $filenames, $path ): void {
+		if ( str_contains( $filenames, $needle ) && str_contains( $path, $needle ) ) {
+			include_once $path . '/' . $filenames;
+		}
 	}
 	
 	/**
@@ -51,30 +58,12 @@ class ObjectLoaderClass {
 		foreach ( $get_filenames as $filenames ) {
 			foreach ( $get_directories as $path ) {
 				
-				if ( str_contains( $filenames, 'trait' ) && str_contains( $path, 'trait' ) ) {
-					include_once $path . '/' . $filenames;
-					
-				}
-				
-				if ( str_contains( $filenames, 'interface' ) && str_contains( $path, 'interface' ) ) {
-					include_once $path . '/' . $filenames;
-					
-				}
-				
-				if ( str_contains( $filenames, 'abstract' ) && str_contains( $path, 'abstract' ) ) {
-					include_once $path . '/' . $filenames;
-					
-				}
-				
-				if ( str_contains( $filenames, 'class' ) && str_contains( $path, 'class' ) ) {
-					include_once $path . '/' . $filenames;
-					
-				}
-				
-				if ( str_contains( $filenames, 'function' ) && str_contains( $path, 'function' ) ) {
-					include_once $path . '/' . $filenames;
-					
-				}
+				$this->folder_conditions( 'trait', $filenames, $path );
+				$this->folder_conditions( 'interface', $filenames, $path );
+				$this->folder_conditions( 'abstract', $filenames, $path );
+				$this->folder_conditions( 'class', $filenames, $path );
+				$this->folder_conditions( 'template', $filenames, $path );
+				$this->folder_conditions( 'function', $filenames, $path );
 				
 			}
 		}
@@ -83,4 +72,4 @@ class ObjectLoaderClass {
 	
 }
 
-$loaderClass = new ObjectLoaderClass();
+$loaderClass = new loaderClass();
