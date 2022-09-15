@@ -1,0 +1,24 @@
+{
+  "name": "php-objects-patterns-practice",
+  "version": "1.0.0",
+  "description": "Package installer",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass assets/scss/style.scss assets/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NiKourn/PHP-Objects-Patterns-Practice.git"
+  },
+  "author": "Nick Kourniotis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NiKourn/PHP-Objects-Patterns-Practice/issues"
+  },
+  "homepage": "https://github.com/NiKourn/PHP-Objects-Patterns-Practice#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.1",
+    "gulp": "^4.0.2",
+    "node-sass": "^7.0.3"
+  }
+}
