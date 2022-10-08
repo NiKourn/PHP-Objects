@@ -3,11 +3,7 @@
 
 ## v1.0.0 - 8/10/22 - Initial Release 
 - Removed Doctrine and cleared code for intial release (for testing purposes)
-
-## 15.09.22
 - Packages, Sass bootstrap installation, Doctrine try for db purposes
-
-## 12.09.22
 - Load classes, traits, interfaces, templates, functions at include folders automatically 
 
 ### Future goals
