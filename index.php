@@ -1,7 +1,7 @@
 <?php
 include_once 'helpers/loaderClass.php';
 
-templateClassHelper::include( 'header' );
-templateClassHelper::include( 'content' );
-templateClassHelper::include( 'footer' );
+frontpageLoader::include( 'header' );
+frontpageLoader::include( 'content' );
+frontpageLoader::include( 'footer' );
 

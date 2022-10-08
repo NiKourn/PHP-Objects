@@ -52,11 +52,9 @@ class loaderClass {
 	 * @return void
 	 */
 	private function implement_includes(): void {
-		$get_filenames   = $this->get_filenames();
-		$get_directories = $this->get_directories();
 		
-		foreach ( $get_filenames as $filenames ) {
-			foreach ( $get_directories as $path ) {
+		foreach ( $this->get_filenames() as $filenames ) {
+			foreach ( $this->get_directories() as $path ) {
 				
 				$this->folder_conditions( 'trait', $filenames, $path );
 				$this->folder_conditions( 'interface', $filenames, $path );
