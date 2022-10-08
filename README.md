@@ -1,8 +1,11 @@
 # PHP-Objects-Patterns-Practice
  Practical exercises of book titled -> PHP Objects, Patterns and Practice by Matt Zandstra (6th Edition, PHP v.8.0)
 Works only with php 8.0 or newer!
-work path -> http://book.local
+work path -> http://test.local
 
+
+
+### 8/10/22 -> Custom stuff to be added like connection with PDO and make an app like Attendance or something
 ### Commands to run from other platform: npm install, composer install, npm install bootstrap@5.2.1 (optional if needed)
 
 
