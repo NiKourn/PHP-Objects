@@ -12,6 +12,7 @@
 
 ### Requirements:
 - PHP 8.0 or newer
+- mySQL 5.7.36
 
 
 [comment]: <> (Commands to run from other platform npm install, composer install, npm install bootstrap@5.2.1)
