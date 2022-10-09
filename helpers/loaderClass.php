@@ -3,10 +3,18 @@
 class loaderClass {
 	
 	/**
-	 * folders have to have the same name with the files inside.
+	 * Folders have to have the same name with the files inside.
 	 * @var string
 	 */
 	private string $folder_path = 'helpers/*';
+	
+	/**
+	 * Add filename/directories needle if needed. !! ATTN both folders and files must contain the needle so structure must stay like as it is else includes wont be loaded!!
+	 * @var array|string[]
+	 */
+	private array $filenames_needles = [
+		'trait', 'interface', 'abstract', 'class', 'template', 'function'
+	];
 	
 	public function __construct() {
 		$this->implement_includes();
@@ -52,17 +60,11 @@ class loaderClass {
 	 * @return void
 	 */
 	private function implement_includes(): void {
-		
 		foreach ( $this->get_filenames() as $filenames ) {
-			foreach ( $this->get_directories() as $path ) {
-				
-				$this->folder_conditions( 'trait', $filenames, $path );
-				$this->folder_conditions( 'interface', $filenames, $path );
-				$this->folder_conditions( 'abstract', $filenames, $path );
-				$this->folder_conditions( 'class', $filenames, $path );
-				$this->folder_conditions( 'template', $filenames, $path );
-				$this->folder_conditions( 'function', $filenames, $path );
-				
+			foreach ( $this->get_directories() as $directory ) {
+				foreach ( $this->filenames_needles as $needles ) {
+					$this->folder_conditions( $needles, $filenames, $directory );
+				}
 			}
 		}
 		
