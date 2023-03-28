@@ -84,3 +84,4 @@ echo '<pre>' . print_r(scandir('includes/classes'), true) . '</pre>';
 echo '<br> Memory usage end Script: ' . memory_get_usage() . '<br>';
 unset( $cdproduct, $book_product, $xml, $textProduct, $shopProduct );
 echo '<br> Memory usage after Unset: ' . memory_get_usage() . '<br>';
+///test git stuff
